@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import {User} from "../entities";
+import {HttpApiResponse} from "../entities/http.api.response";
 
 export default class UserController {
 
@@ -8,7 +10,18 @@ export default class UserController {
    * @param res
    */
   list(req: Request, res: Response): void {
+    const timeStart = new Date().getTime();
+    const users: User[] = [];
+    users.push(new User(1, "Juan", "Juan es un usuario", "Juan es un usuario", new Date(), new Date(), new Date()));
+    users.push(new User(2, "Pedro", "Pedro es un usuario", "Pedro es un usuario", new Date(), new Date(), new Date()));
+    users.push(new User(3, "Maria", "Maria es un usuario", "Maria es un usuario", new Date(), new Date(), new Date()));
 
+    const response = new HttpApiResponse({
+      data: users,
+      time: new Date().getTime() - timeStart
+    });
+
+    res.send(response);
   }
 
   /**

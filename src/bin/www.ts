@@ -1,3 +1,10 @@
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = "production";
+  require("dotenv").config({path: `.env`});
+} else {
+  require("dotenv").config({path: `.env.${process.env.NODE_ENV}`});
+}
+
 import app from "../app";
 import http from "http";
 import debug from "debug";
