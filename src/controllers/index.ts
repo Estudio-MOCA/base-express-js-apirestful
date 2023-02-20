@@ -6,7 +6,7 @@ const req = requireContext(".", true, /\.ts$/);
 
 const controllers: any = {};
 
-req.keys().forEach((key) => {
+req.keys().forEach((key: string) => {
   const basename = path.basename(key);
   if (key.indexOf("index.ts") > -1) return;
   const className = pascalCase(basename.replace(/(\.ts)/g, ""));
