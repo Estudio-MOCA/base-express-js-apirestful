@@ -1,20 +1,20 @@
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = "production";
-  require("dotenv").config({path: `.env`});
+  require("dotenv").config({ path: `.env` });
 } else {
-  require("dotenv").config({path: `.env.${process.env.NODE_ENV}`});
+  require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 }
 
 import app from "../app";
 import http from "http";
 import debug from "debug";
-import {GlobalHelper} from "../helpers";
+import { GlobalHelper } from "../helpers";
 
 const port = GlobalHelper.normalizePort(process.env.PORT || 3000);
 const server = http.createServer(app);
 
 server.listen(port, () => {
-  console.log(`Running on port ${port}.`);
+  console.log(`Running on http://localhost:${port}.`);
 });
 
 server.on("error", (error: NodeJS.ErrnoException) => {

@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import {User} from "../entities";
-import {HttpApiResponse} from "../entities/http.api.response";
+import { Request, Response, NextFunction } from 'express';
+import { User } from "../entities";
+import { HttpApiResponse } from "../entities/http.api.response";
 
 export default class UserController {
 
@@ -9,19 +9,25 @@ export default class UserController {
    * @param req
    * @param res
    */
-  list(req: Request, res: Response): void {
+  list(req: Request, res: Response, next: NextFunction): void {
     const timeStart = new Date().getTime();
-    const users: User[] = [];
-    users.push(new User(1, "Juan", "Juan es un usuario", "Juan es un usuario", new Date(), new Date(), new Date()));
-    users.push(new User(2, "Pedro", "Pedro es un usuario", "Pedro es un usuario", new Date(), new Date(), new Date()));
-    users.push(new User(3, "Maria", "Maria es un usuario", "Maria es un usuario", new Date(), new Date(), new Date()));
+    try {
 
-    const response = new HttpApiResponse({
-      data: users,
-      time: new Date().getTime() - timeStart
-    });
+      const users: User[] = [];
+      users.push(new User(1, "Juan", "Juan es un usuario", "Juan es un usuario", new Date(), new Date(), new Date()));
+      users.push(new User(2, "Pedro", "Pedro es un usuario", "Pedro es un usuario", new Date(), new Date(), new Date()));
+      users.push(new User(3, "Maria", "Maria es un usuario", "Maria es un usuario", new Date(), new Date(), new Date()));
 
-    res.send(response);
+      const response = new HttpApiResponse({
+        data: users,
+        time: new Date().getTime() - timeStart
+      });
+
+      res.send(response);
+    } catch (error) {
+
+      next(error)
+    }
   }
 
   /**
@@ -29,7 +35,7 @@ export default class UserController {
    * @param req
    * @param res
    */
-  get(req: Request, res: Response): void {
+  get(req: Request, res: Response, next: NextFunction): void {
 
   }
 
@@ -38,7 +44,7 @@ export default class UserController {
    * @param req
    * @param res
    */
-  create(req: Request, res: Response): void {
+  create(req: Request, res: Response, next: NextFunction): void {
 
   }
 
@@ -47,7 +53,7 @@ export default class UserController {
    * @param req
    * @param res
    */
-  update(req: Request, res: Response): void {
+  update(req: Request, res: Response, next: NextFunction): void {
 
   }
 
@@ -56,7 +62,7 @@ export default class UserController {
    * @param req
    * @param res
    */
-  delete(req: Request, res: Response): void {
+  delete(req: Request, res: Response, next: NextFunction): void {
 
   }
 

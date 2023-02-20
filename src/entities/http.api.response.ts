@@ -1,5 +1,5 @@
-import {GlobalHelper} from "../helpers";
-import {env} from "../helpers/env";
+import { GlobalHelper } from "../helpers";
+import { env } from "../helpers/env";
 
 /**
  * Entidad de dominio para responses
